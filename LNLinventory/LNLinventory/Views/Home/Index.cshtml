@@ -1,39 +1,40 @@
-﻿
-@model IEnumerable<Users>
+﻿@model IEnumerable<LNLinventory.Users>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>List of Use</h2>
-<hr />
-@if (!String.IsNullOrEmpty(TempData["msg"] as String))
-{
-    <div class="alert-success">
-        @TempData["msg"]
-    </div>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th> Seq # </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Action 
+        </th>
+    </tr>
+    @{ int i = 1;}
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @i
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+    i++;
 }
-<div class="row">
-    <div class="col-md-6">
-        <table class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Action</th>
-            </tr>
 
-            @foreach (var u in Model)
-            {
-                <tr>
-                    <th>@u.id</th>
-                    <th>@u.Username</th>
-                    <th>
-                        <a href="~/Home/Update/@u.id">Update</a>|
-                        <a href="~/Home/Delete/@u.id">Delete</a>
-                    </th>
-                </tr>
-            }
-        </table>
-    </div>
-</div>
-
+</table>

@@ -21,14 +21,4 @@ namespace MyAppCRUD.Contracts
 
         
     }
-    public interface IBaseRepository<T>
-    {
-        T Get(object id);
-        List<T> GetAll();
-        ErrorCode Create();
-        ErrorCode Update(object id, T t);
-        ErrorCode Delete(object id);
-
-
-    }
 }
